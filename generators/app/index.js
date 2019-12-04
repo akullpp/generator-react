@@ -10,7 +10,7 @@ module.exports = class extends Generator {
       {
         type: 'input',
         name: 'projectName',
-        message: 'Project name',
+        message: 'Project name:',
         validate: input => Boolean(input.length),
       },
     ])
