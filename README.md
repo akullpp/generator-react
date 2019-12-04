@@ -3,7 +3,7 @@
 ## Usage
 
 ```sh
-git clone
+git clone https://github.com/akullpp/generator-react.git
 cd generator-react
 npm link
 yo react
