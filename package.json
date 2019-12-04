@@ -1,5 +1,5 @@
 {
-  "name": "generator-cra",
+  "name": "generator-react",
   "description": "Yeoman generator for create-react-app.",
   "author": "Andreas Kull <akullpp@gmail.com> (https://github.com/akullpp)",
   "repository": "github:akullpp/generator-cra",
