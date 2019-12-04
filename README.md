@@ -15,10 +15,10 @@ yo react
 
 - axios
 - create-react-app
-- emotion core
 - material-ui with icons
 - react-dom
 - react-router
+- styled-components
 
 ### Development
 
