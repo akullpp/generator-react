@@ -1,0 +1,19 @@
+{
+  "name": "generator-cra",
+  "description": "Yeoman generator for create-react-app.",
+  "author": "Andreas Kull <akullpp@gmail.com> (https://github.com/akullpp)",
+  "repository": "github:akullpp/generator-cra",
+  "license": "MIT",
+  "version": "1.0.0",
+  "dependencies": {
+    "yeoman-generator": "4.2.0"
+  },
+  "devDependencies": {
+    "prettier": "1.19.1"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+  }
+}
