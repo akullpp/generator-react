@@ -24,7 +24,7 @@ yo react
 
 - concurrently
 - editorconfig
-- eslint with Airbnb
-- husky
+- eslint according to Airbnb styleguide
+- husky with lint-staged and pretty-quick
 - prettier
-- react-testing-library
+- react-testing-library with jest-dom
