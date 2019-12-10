@@ -1,8 +1,8 @@
 {
   "name": "generator-react",
-  "description": "Yeoman generator for create-react-app.",
+  "description": "Yeoman generator for React.",
   "author": "Andreas Kull <akullpp@gmail.com> (https://github.com/akullpp)",
-  "repository": "github:akullpp/generator-cra",
+  "repository": "github:akullpp/generator-react",
   "license": "MIT",
   "version": "1.0.0",
   "dependencies": {
