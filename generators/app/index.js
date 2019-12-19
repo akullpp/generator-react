@@ -13,8 +13,16 @@ module.exports = class extends Generator {
         message: 'Project name:',
         validate: input => Boolean(input.length),
       },
+      {
+        type: 'checkbox',
+        name: 'libraries',
+        message: 'Libraries:',
+        choices: [
+          { name: 'date-fns', value: 'dateFns' },
+          { name: 'react-i18next', value: 'i18n' },
+        ],
+      },
     ])
-
     this.destinationRoot(this.answers.projectName)
   }
 
@@ -26,7 +34,7 @@ module.exports = class extends Generator {
     })
 
     this.fs.copyTpl(
-      this.templatePath('package.json'),
+      this.templatePath('package.json.tpl'),
       this.destinationPath('package.json'),
       this.answers,
     )
@@ -48,6 +56,21 @@ module.exports = class extends Generator {
       this.destinationPath('public/index.html'),
       this.answers,
     )
+
+    if (this.answers.libraries.includes('i18n')) {
+      this.fs.copy(
+        this.templatePath('optional/translation.json'),
+        this.destinationPath('public/locales/en/translation.json'),
+      )
+      this.fs.copy(
+        this.templatePath('optional/i18n.js'),
+        this.destinationPath('src/i18n.js'),
+      )
+      this.fs.copy(
+        this.templatePath('optional/index.js'),
+        this.destinationPath('src/index.js'),
+      )
+    }
   }
 
   end() {

@@ -20,6 +20,11 @@ yo react
 - react-router
 - styled-components
 
+### Optional
+
+- Date and time: [date-fns](https://github.com/date-fns/date-fns)
+- Internationalization: [react-i18next](https://github.com/i18next/react-i18next)
+
 ### Development
 
 - concurrently

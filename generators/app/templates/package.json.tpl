@@ -7,9 +7,13 @@
   "dependencies": {
     "@material-ui/core": "4.8.0",
     "@material-ui/icons": "4.5.1",
-    "axios": "0.19.0",
+    "axios": "0.19.0",<% if (libraries.includes('dateFns')) { %>
+    "date-fns": "2.8.1",<% } %><% if (libraries.includes('i18n')) { %>
+    "i18next": "19.0.2",
+    "i18next-xhr-backend": "3.2.2",<% } %>
     "react": "16.12.0",
-    "react-dom": "16.12.0",
+    "react-dom": "16.12.0",<% if (libraries.includes('i18n')) { %>
+    "react-i18next": "11.2.7",<% } %>
     "react-router-dom": "5.1.2",
     "react-scripts": "3.3.0",
     "styled-components": "4.4.1"
