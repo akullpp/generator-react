@@ -61,7 +61,18 @@ module.exports = class extends Generator {
       pjson = merge(pjson, this.templatePath('optional/date/package.json'))
     }
     if (this.answers.libraries.includes('i18n')) {
-      this.handleI18nLibrary()
+      this.fs.copy(
+        this.templatePath('optional/i18n/translation.json'),
+        this.destinationPath('public/locales/en/translation.json'),
+      )
+      this.fs.copy(
+        this.templatePath('optional/i18n/i18n.js'),
+        this.destinationPath('src/i18n.js'),
+      )
+      this.fs.copy(
+        this.templatePath('optional/i18n/index.js'),
+        this.destinationPath('src/index.js'),
+      )
       pjson = merge(pjson, this.templatePath('optional/i18n/package.json'))
     }
     pjson.dependencies = sort(pjson.dependencies)
@@ -74,21 +85,6 @@ module.exports = class extends Generator {
       this.templatePath('merged-package.json'),
       this.destinationPath('package.json'),
       this.answers,
-    )
-  }
-
-  handleI18nLibrary() {
-    this.fs.copy(
-      this.templatePath('optional/i18n/translation.json'),
-      this.destinationPath('public/locales/en/translation.json'),
-    )
-    this.fs.copy(
-      this.templatePath('optional/i18n/i18n.js'),
-      this.destinationPath('src/i18n.js'),
-    )
-    this.fs.copy(
-      this.templatePath('optional/i18n/index.js'),
-      this.destinationPath('src/index.js'),
     )
   }
 
