@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 
-import '.'
+import './i18n'
 import './index.css'
 import App from './App'
 
