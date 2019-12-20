@@ -1,4 +1,8 @@
+const fs = require('fs')
 const Generator = require('yeoman-generator')
+
+const merge = require('./merge')
+const sort = require('./sort')
 
 module.exports = class extends Generator {
   constructor(args, options) {
@@ -18,7 +22,7 @@ module.exports = class extends Generator {
         name: 'libraries',
         message: 'Libraries:',
         choices: [
-          { name: 'date-fns', value: 'dateFns' },
+          { name: 'date-fns', value: 'date' },
           { name: 'react-i18next', value: 'i18n' },
         ],
       },
@@ -32,12 +36,6 @@ module.exports = class extends Generator {
     this.fs.copy(this.templatePath('static/**/*'), this.destinationPath(), {
       globOptions: { dot: true },
     })
-
-    this.fs.copyTpl(
-      this.templatePath('package.json.tpl'),
-      this.destinationPath('package.json'),
-      this.answers,
-    )
 
     this.fs.copyTpl(
       this.templatePath('README.md'),
@@ -57,20 +55,41 @@ module.exports = class extends Generator {
       this.answers,
     )
 
-    if (this.answers.libraries.includes('i18n')) {
-      this.fs.copy(
-        this.templatePath('optional/translation.json'),
-        this.destinationPath('public/locales/en/translation.json'),
-      )
-      this.fs.copy(
-        this.templatePath('optional/i18n.js'),
-        this.destinationPath('src/i18n.js'),
-      )
-      this.fs.copy(
-        this.templatePath('optional/index.js'),
-        this.destinationPath('src/index.js'),
-      )
+    let pjson = JSON.parse(fs.readFileSync(this.templatePath('package.json')))
+
+    if (this.answers.libraries.includes('date')) {
+      pjson = merge(pjson, this.templatePath('optional/date/package.json'))
     }
+    if (this.answers.libraries.includes('i18n')) {
+      this.handleI18nLibrary()
+      pjson = merge(pjson, this.templatePath('optional/i18n/package.json'))
+    }
+    pjson.dependencies = sort(pjson.dependencies)
+
+    fs.writeFileSync(
+      this.templatePath('merged-package.json'),
+      JSON.stringify(pjson, null, 2),
+    )
+    this.fs.copyTpl(
+      this.templatePath('merged-package.json'),
+      this.destinationPath('package.json'),
+      this.answers,
+    )
+  }
+
+  handleI18nLibrary() {
+    this.fs.copy(
+      this.templatePath('optional/i18n/translation.json'),
+      this.destinationPath('public/locales/en/translation.json'),
+    )
+    this.fs.copy(
+      this.templatePath('optional/i18n/i18n.js'),
+      this.destinationPath('src/i18n.js'),
+    )
+    this.fs.copy(
+      this.templatePath('optional/i18n/index.js'),
+      this.destinationPath('src/index.js'),
+    )
   }
 
   end() {
