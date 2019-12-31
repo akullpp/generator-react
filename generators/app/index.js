@@ -14,6 +14,7 @@ module.exports = class extends Generator {
       {
         type: 'input',
         name: 'projectName',
+        default: this.args[0],
         message: 'Project name:',
         validate: input => Boolean(input.length),
       },
@@ -100,6 +101,6 @@ module.exports = class extends Generator {
     this.spawnCommandSync('git', ['init'])
     this.spawnCommandSync('git', ['checkout', '-b', 'develop'])
     this.spawnCommandSync('git', ['add', '.'])
-    this.spawnCommandSync('git', ['commit', '-am', '"Initialize"'])
+    this.spawnCommandSync('git', ['commit', '-am', 'Initialize'])
   }
 }
