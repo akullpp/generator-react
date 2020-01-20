@@ -1,12 +1,14 @@
 # Generator for React Projects
 
+[Yeoman](https://yeoman.io) generator for React projects.
+
 ## Usage
 
 ```sh
 git clone https://github.com/akullpp/generator-react.git
 cd generator-react
 npm link
-yo react
+npx yo react
 ```
 
 ## Stack
