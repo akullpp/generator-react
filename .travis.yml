@@ -1,4 +1,4 @@
 language: shell
 
 script:
-    - echo 1
+    - echo "Dummy build for Dependabot automerge"
